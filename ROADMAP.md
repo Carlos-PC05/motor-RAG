@@ -9,6 +9,7 @@
 - **Embeddings**: `sentence-transformers` (CPU) — modelo `all-MiniLM-L6-v2` para empezar
 - **Base vectorial**: ChromaDB (más simple de arrancar que FAISS, buena para aprender)
 - **Generación**: Ollama (ya lo tienes instalado) con un modelo pequeño tipo Qwen o Llama 3.2
+- **LangChain** (adoptado 2026-08-14): `langchain-core` para la estructura de documentos, `langchain-text-splitters` para chunking. Se usa la librería pero cada concepto se estudia a fondo.
 - **Contenerización**: Docker (al final, cuando el proyecto ya funcione)
 
 ---
@@ -25,7 +26,7 @@
 
 ## Fase 1 — Ingesta y embeddings (semana 1)
 
-- [ ] Cargar documentos (texto plano / PDF / markdown, tú eliges) -> como MVP, vamos a usar mi Vault de Obsidian como fuente de documentos.
+- [x] Cargar documentos (texto plano / PDF / markdown, tú eliges) -> como MVP, vamos a usar mi Vault de Obsidian como fuente de documentos.
 - [ ] Implementar **chunking**: dividir documentos largos en fragmentos manejables
   - Entender el trade-off: chunks muy pequeños pierden contexto, muy grandes pierden precisión
   - Probar chunking simple (por nº de caracteres/tokens con solapamiento) antes de nada más sofisticado
@@ -78,6 +79,6 @@
 
 _(usa esta sección para anotar dónde lo dejaste cada vez que retomes el proyecto)_
 
-- Última sesión:
-- Próximo paso:
-- Dudas pendientes:
+- Última sesión: 2026-08-14 (2ª) — Loader migrado a LangChain (Document + BaseLoader, mejor extracción de etiquetas). Lección 2: chunking con `RecursiveCharacterTextSplitter` por tokens (85 docs → 1556 chunks, máx. 202 tokens, límite del modelo 256).
+- Próximo paso: terminar chunking (experimento chunk_size=800 para ver el truncamiento) y pasar a embeddings + ChromaDB.
+- Dudas pendientes: ¿limpiar bloques de código antes de indexar?; añadir `langchain-text-splitters` a `requirements.txt`.
