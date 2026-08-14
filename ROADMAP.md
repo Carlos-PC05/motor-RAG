@@ -25,7 +25,7 @@
 
 ## Fase 1 — Ingesta y embeddings (semana 1)
 
-- [ ] Cargar documentos (texto plano / PDF / markdown, tú eliges)
+- [ ] Cargar documentos (texto plano / PDF / markdown, tú eliges) -> como MVP, vamos a usar mi Vault de Obsidian como fuente de documentos.
 - [ ] Implementar **chunking**: dividir documentos largos en fragmentos manejables
   - Entender el trade-off: chunks muy pequeños pierden contexto, muy grandes pierden precisión
   - Probar chunking simple (por nº de caracteres/tokens con solapamiento) antes de nada más sofisticado

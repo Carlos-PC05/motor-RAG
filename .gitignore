@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Teaching
+assets/
+learning-records/
+lessons/
+reference/
+
+RESOURCES.md
+NOTES.md
+MISSION.md
