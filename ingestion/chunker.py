@@ -26,21 +26,26 @@ LIMITE_MODELO = 256
 CHUNK_TOKENS = 200
 SOLAPAMIENTO_TOKENS = 40
 
-# Inicializar tokenizer
-tokenizer = AutoTokenizer.from_pretrained(MODELO)
+# Cadena de creación de chunks
+def crear_chunks():
 
-# Inicializar Splitter
-splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
-    tokenizer, chunk_size=CHUNK_TOKENS, chunk_overlap=SOLAPAMIENTO_TOKENS
-)
+    # Inicializar tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(MODELO)
+    tokenizer.model_max_length = 10_000  # solo se usa para contar: evita avisos
+    # Inicializar Splitter
+    splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
+        tokenizer, chunk_size=CHUNK_TOKENS, chunk_overlap=SOLAPAMIENTO_TOKENS
+    )
 
-# Cargamos documentos
-docs = cargar_vault()
-origen = {d.metadata["fuente"]: d.page_content for d in docs}
-chunks = splitter.split_documents(docs)
+    docs = cargar_vault()
+    #origen = {d.metadata["fuente"]: d.page_content for d in docs}
+    return splitter.split_documents(docs)
 
-print(f"Documentos: {len(docs)}  ->  Chunks: {len(chunks)}")
 
+#print(f"Documentos: {len(docs)}  ->  Chunks: {len(chunks)}")
+
+# Comprobación
+"""
 max_tokens, max_doc = 0, ""
 violaciones = []
 for c in chunks:
@@ -57,3 +62,4 @@ falta = sum(
     1 for c in chunks if c.page_content not in origen[c.metadata["fuente"]]
 )
 print(f"Chunks sin integridad textual: {falta}")
+"""

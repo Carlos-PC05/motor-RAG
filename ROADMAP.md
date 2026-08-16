@@ -27,10 +27,10 @@
 ## Fase 1 — Ingesta y embeddings (semana 1)
 
 - [x] Cargar documentos (texto plano / PDF / markdown, tú eliges) -> como MVP, vamos a usar mi Vault de Obsidian como fuente de documentos.
-- [ ] Implementar **chunking**: dividir documentos largos en fragmentos manejables
+- [x] Implementar **chunking**: dividir documentos largos en fragmentos manejables
   - Entender el trade-off: chunks muy pequeños pierden contexto, muy grandes pierden precisión
   - Probar chunking simple (por nº de caracteres/tokens con solapamiento) antes de nada más sofisticado
-- [ ] Generar embeddings de cada chunk con `sentence-transformers`
+- [x] Generar embeddings de cada chunk con `sentence-transformers`
 - [ ] Guardar chunks + embeddings en ChromaDB
 
 **Concepto clave:** similitud coseno — cómo se mide "cercanía" entre vectores y por qué eso equivale a cercanía semántica entre textos.
@@ -79,6 +79,6 @@
 
 _(usa esta sección para anotar dónde lo dejaste cada vez que retomes el proyecto)_
 
-- Última sesión: 2026-08-14 (2ª) — Loader migrado a LangChain (Document + BaseLoader, mejor extracción de etiquetas). Lección 2: chunking con `RecursiveCharacterTextSplitter` por tokens (85 docs → 1556 chunks, máx. 202 tokens, límite del modelo 256).
-- Próximo paso: terminar chunking (experimento chunk_size=800 para ver el truncamiento) y pasar a embeddings + ChromaDB.
-- Dudas pendientes: ¿limpiar bloques de código antes de indexar?; añadir `langchain-text-splitters` a `requirements.txt`.
+- Última sesión: 2026-08-16 (3ª) — Lección 3: embeddings. Embedder verificado: (1556, 384), norma 1.000, demo "formato de una factura" → contasol 0.686. Refactor de chunker.py a `crear_chunks()` pendiente de hacer por el usuario.
+- Próximo paso: completar la lección 3 y pasar a ChromaDB (última tarea de la Fase 1).
+- Dudas pendientes: ¿limpiar bloques de código antes de indexar?; añadir `langchain-text-splitters` a `requirements.txt`; ¿cambiar a modelo multilingüe (paraphrase-multilingual-MiniLM-L12-v2)?
